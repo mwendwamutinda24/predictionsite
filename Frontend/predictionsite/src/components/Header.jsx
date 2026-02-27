@@ -17,7 +17,7 @@ function  Header() {
             <p>Daily football predictions </p>
         </div>
 <div className="logout">
-  <button className="logout-btn"><Link to="/login">Logout</Link></button>
+  <button className="logout-btn" style={{marginLeft:"80%", background:"red",width:"200px",height:"40px",textDecoration:"none"}}><Link to="/login">Logout</Link></button>
 </div>
     </div>
   )
