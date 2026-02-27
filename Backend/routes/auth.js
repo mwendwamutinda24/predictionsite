@@ -130,7 +130,7 @@ router.get('/sites/:id', async (req, res) => {
   }
 });
 
-// ✅ Default admin creation
+
 async function createDefaultAdmin() {
   try {
     const existingAdmin = await Register.findOne({ email: "kelvinmwendwa5636@gmail.com" });
