@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
-import { jwtDecode } from "jwt-decode";   // ✅ import correctly
+import { jwtDecode } from "jwt-decode";
 
 function Login() {
   const navigate = useNavigate();
@@ -10,6 +10,9 @@ function Login() {
     email: '',
     password: ''
   });
+
+  // ✅ Use environment variable for backend URL
+  const API_URL = process.env.REACT_APP_API_URL || "https://predictionsite-impq.onrender.com";
 
   const handleChange = (e) => {
     setFormData({
@@ -22,7 +25,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:5000/auth/login', {
+      const res = await fetch(`${API_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
@@ -55,7 +58,7 @@ function Login() {
           }, 2000);
         }
       } else {
-        toast.error("Invalid Email/password");
+        toast.error(data.message || "Invalid Email/password");
       }
     } catch (err) {
       console.error(err);
