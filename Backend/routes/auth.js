@@ -133,7 +133,7 @@ router.get('/sites/:id', async (req, res) => {
 
 async function createDefaultAdmin() {
   try {
-    const existingAdmin = await Register.findOne({ email: "kelvinmwendwa5636@gmail.com" });
+    const existingAdmin = await Register.findOne({ email: "kimanzimartinson@gmail.com" });
     if (existingAdmin) {
       console.log("Admin already exists");
       return;
