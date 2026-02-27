@@ -19,8 +19,8 @@ function Header() {
           to="/login"
           style={{
             marginLeft: "60%",
-            marginTop: "-30px",
-            width: "200px",
+            marginTop: "-100px",
+            width: "130px",
             height: "40px",
             backgroundColor: "red",
             color: "white",
