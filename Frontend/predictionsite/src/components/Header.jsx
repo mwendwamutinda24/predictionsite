@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaFutbol } from "react-icons/fa"
+import {Link} from "react-router-dom";
 
 function  Header() {
   return (
@@ -12,7 +13,9 @@ function  Header() {
            
             <p>Daily football predictions </p>
         </div>
-
+<div className="logout">
+  <button className="logout-btn><Link to="/login">Logout</Link></div>
+</div>
     </div>
   )
 }
