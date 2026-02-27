@@ -8,6 +8,9 @@ function  Header() {
         <div className="football">
              <i><FaFutbol size={30} color="white" padding={10} /></i>
               <h1>Ziggy Tips</h1>
+
+
+          
         </div>
         <div className="header1">
            
