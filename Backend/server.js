@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const authRoutes = require('./routes/auth');
-const Register = require('./model/register'); // import your Register model
+const Register = require('./model/register');
 const bcrypt = require('bcrypt');
 
 const app = express();
@@ -32,15 +32,15 @@ mongoose.connect(process.env.MONGO_URI)
       const hashedPassword = await bcrypt.hash("ziggymartohH12", 10);
       const admin = new Register({
         name: "Ziggy Marto",
-        email: "kimanzimartinson@gmail.com", // fixed: no leading space
+        email: "kimanzimartinson@gmail.com",
         number: "0743163313",
         password: hashedPassword,
         status: "admin"
       });
       await admin.save();
-      console.log("Default admin created with email kimanzimartinson@gmail.com and password ziggymartohH12");
+      console.log("✅ Default admin created with email kimanzimartinson@gmail.com and password ziggymartohH12");
     } else {
-      console.log("Admin already exists");
+      console.log("ℹ️ Admin already exists");
     }
   })
   .catch(err => console.error("Mongo connection error:", err));
