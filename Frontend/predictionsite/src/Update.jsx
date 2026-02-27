@@ -8,7 +8,7 @@ function UpdateMatch({ matchId }) {
   useEffect(() => {
     console.log("Fetching match with ID:", matchId);
     if (!matchId) return;
-    fetch(`http://localhost:5000/auth/sites/${matchId}`)
+    fetch(`https://predictionsite-2.onrender.com/auth/sites/${matchId}`)
       .then(res => res.json())
       .then(data => {
         console.log("Fetched match:", data);
