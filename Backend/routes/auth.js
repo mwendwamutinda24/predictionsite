@@ -142,9 +142,9 @@ async function createDefaultAdmin() {
     const hashedPassword = await bcrypt.hash("ziggymartohH12", 10);
 
     const admin = new Register({
-      name: "Kelvin Mutinda",
-      email: "Email kimanzimartinson@gmail.com",
-      number: "Phone 0743163313",
+      name: "Ziggy Marto",
+      email: " kimanzimartinson@gmail.com",
+      number: "0743163313",
       password: hashedPassword,
       status: "admin"
     });
