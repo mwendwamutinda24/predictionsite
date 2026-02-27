@@ -143,18 +143,19 @@ async function createDefaultAdmin() {
 
     const admin = new Register({
       name: "Ziggy Marto",
-      email: " kimanzimartinson@gmail.com",
+      email: "kimanzimartinson@gmail.com", // ✅ removed leading space
       number: "0743163313",
       password: hashedPassword,
       status: "admin"
     });
 
     await admin.save();
-    console.log("Default admin created with email kelvinmwendwa5636@gmail.com and password admin123");
+    console.log("Default admin created with email kimanzimartinson@gmail.com and password ziggymartohH12");
   } catch (err) {
     console.error("Error creating admin:", err);
   }
 }
+
 
 createDefaultAdmin();
 
