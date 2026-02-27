@@ -2,11 +2,14 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
-const authRoutes = require('./routes/auth'); 
+
+const authRoutes = require('./routes/auth');
+const Register = require('./model/register'); // import your Register model
+const bcrypt = require('bcrypt');
 
 const app = express();
 
-
+// ✅ CORS setup
 app.use(cors({
   origin: "https://predictionsite-gr8r.vercel.app", // no trailing slash
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -15,15 +18,34 @@ app.use(cors({
 
 app.use(express.json());
 
-
+// ✅ Routes
 app.use('/auth', authRoutes);
 
-
+// ✅ Connect to MongoDB and seed admin
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("MongoDb Connected successfully"))
-  .catch(err => console.log(err));
+  .then(async () => {
+    console.log("MongoDb Connected successfully");
 
-const existingAdmin = await Register.findOne({ email: "kimanzimartinson@gmail.com" }); if (!existingAdmin) { const hashedPassword = await bcrypt.hash("ziggymartohH12", 10); const admin = new Register({ name: "Ziggy Marto", email: "kimanzimartinson@gmail.com", number: "0743163313", password: hashedPassword, status: "admin" }); await admin.save(); console.log("Default admin created with email kimanzimartinson@gmail.com and password ziggymartohH12"); } }) .catch(err => console.error(err));
+    // Seed admin once
+    const existingAdmin = await Register.findOne({ email: "kimanzimartinson@gmail.com" });
+    if (!existingAdmin) {
+      const hashedPassword = await bcrypt.hash("ziggymartohH12", 10);
+      const admin = new Register({
+        name: "Ziggy Marto",
+        email: "kimanzimartinson@gmail.com", // fixed: no leading space
+        number: "0743163313",
+        password: hashedPassword,
+        status: "admin"
+      });
+      await admin.save();
+      console.log("Default admin created with email kimanzimartinson@gmail.com and password ziggymartohH12");
+    } else {
+      console.log("Admin already exists");
+    }
+  })
+  .catch(err => console.error("Mongo connection error:", err));
+
+// ✅ Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
