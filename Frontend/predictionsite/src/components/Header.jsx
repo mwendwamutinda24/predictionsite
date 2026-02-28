@@ -8,9 +8,16 @@ function Header() {
 
   const toggleBackground = () => {
     setDarkMode(!darkMode);
-    document.body.style.background = darkMode 
-      ? "whitesmoke"  
-      : "rgb(11, 1, 20)"; 
+
+    if (darkMode) {
+      // back to light mode
+      document.body.style.background = "whitesmoke";
+    
+    } else {
+      // dark mode
+      document.body.style.background = "rgb(11, 1, 20)";
+      document.body.style.color = "white";   // ✅ all text (including table data) turns white
+    }
   };
 
   return (
