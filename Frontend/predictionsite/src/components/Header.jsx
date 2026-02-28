@@ -18,8 +18,6 @@ function Header() {
         <Link
           to="/login"
           style={{
-            marginLeft: "60%",
-            marginTop: "100px",
             width: "130px",
             height: "40px",
             backgroundColor: "red",
