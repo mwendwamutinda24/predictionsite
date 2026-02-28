@@ -17,7 +17,7 @@ function Header() {
     } else {
       // dark mode
       document.body.style.background = "rgb(11, 1, 20)";
-      document.body.style.color = "white";   // ✅ all text (including table data) turns white
+      // ✅ all text (including table data) turns white
     }
   };
 
