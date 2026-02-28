@@ -22,6 +22,7 @@ function Header() {
   };
 
   return (
+    <>
     <div className="header">
       <div className="football">
         <i><FaFutbol size={30} color="white" style={{ padding: 10 }} /></i>
@@ -32,7 +33,13 @@ function Header() {
         <p>Daily football predictions </p>
       </div>
 
-      <div className="logout" style={{ marginTop: "10px" }}>
+      
+      
+    </div>
+    <div className="header2">
+
+    
+    <div className="logout" style={{ marginTop: "10px" }}>
         <Link
           to="/login"
           style={{
@@ -63,8 +70,7 @@ function Header() {
           Logout
         </Link>
       </div>
-
-      <div className="toggle-theme" style={{ marginTop: "15px" }}>
+  <div className="toggle-theme" style={{ marginTop: "15px" }}>
         <FaSun 
           size={25} 
           color="yellow" 
@@ -72,7 +78,9 @@ function Header() {
           onClick={toggleBackground} 
         />
       </div>
-    </div>
+      </div>
+
+    </>
   )
 }
 
