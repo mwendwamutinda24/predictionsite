@@ -9,8 +9,8 @@ function Header() {
   const toggleBackground = () => {
     setDarkMode(!darkMode);
     document.body.style.background = darkMode 
-      ? "black"   // normal background
-      : "lab(24.9401% 45.2703 -51.2728)"; // LAB background
+      ? "whitesmoke"  
+      : "rgb(24, 6, 41)"; 
   };
 
   return (
