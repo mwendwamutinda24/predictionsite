@@ -231,15 +231,17 @@ table th {
 .status-lost {
   color: red;
 }
-.header2{
-    display:flex;
-  }
-  .header2 .toggle-theme{
-  margin-left:1000px;
-  }
 
 .status-pending {
   color: gray;
+}
+
+.header2 {
+  display: flex;
+}
+
+.header2 .toggle-theme {
+  margin-left: 1000px;
 }
 
 /* Mobile styles */
@@ -247,11 +249,13 @@ table th {
   body {
     overflow-x: hidden;
   }
-  .header2{
-    display:flex;
+
+  .header2 {
+    display: flex;
   }
-  .header2 .toggle-theme{
-  margin-left:70px;
+
+  .header2 .toggle-theme {
+    margin-left: 70px;
   }
 
   .logout a {
@@ -281,14 +285,8 @@ table th {
   }
 
   /* ✅ Responsive table */
-  .tables table,
-  .tables thead,
-  .tables tbody,
-  .tables th,
-  .tables td,
-  .tables tr {
-    display:flex;
-    flex-wrap:wrap;
+  .tables table {
+    display: block;
     width: 95%;
   }
 
@@ -297,24 +295,23 @@ table th {
   }
 
   .tables tr {
+    display: flex;             /* ✅ row is flex container */
+    flex-wrap: wrap;           /* ✅ allow wrapping */
+    gap: 10px;
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
     background: #f9f9f9;
-    display: flex;
-    flex-wrap:wrap;
-    gap: 6px;
   }
 
   .tables td {
+    flex: 1 1 45%;             /* ✅ each cell ~half width */
+    min-width: 120px;
     border: none;
-    padding: 8px 0;
+    padding: 8px;
     font-size: 14px;
-    display: flex;
-    flex-wrap:wrap;
-    justify-content: flex-start;
-    width: 100%;
+    text-align: left;
     word-wrap: break-word;
     white-space: normal;
     color: black; /* or white if dark mode */
