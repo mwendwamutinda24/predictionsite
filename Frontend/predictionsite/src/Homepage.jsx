@@ -105,7 +105,7 @@ function Homepage() {
                 {isAdmin && <th>Action</th>}
               </tr>
             </thead>
-            <tbody style={{ color:'white'}}>
+            <tbody>
               {filteredMatches.map(m => (
                 <tr key={m._id}>
                   <td data-label="Time">{m.time}</td>
