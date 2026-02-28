@@ -312,5 +312,9 @@ table{
  table td{
   font-size:14px;
  }
+   .header{
+     display:flex;
+     flex-wrap:wrap;
+   }
  
 }
