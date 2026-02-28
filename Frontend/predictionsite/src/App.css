@@ -318,3 +318,55 @@ table{
    }
  
 }
+/* Base table styles */
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 30px auto;
+  color: white; /* ensures text is visible in dark mode */
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+/* Responsive table for small screens */
+@media (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+    width: 100%;
+  }
+
+  thead {
+    display: none; /* hide table headers */
+  }
+
+  tr {
+    margin-bottom: 15px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 10px;
+    background: rgba(255,255,255,0.05); /* subtle background for rows */
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+    border: none;
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+
+  td::before {
+    content: attr(data-label); /* use data-label as heading */
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #ccc;
+    margin-right: 10px;
+  }
+}
+
