@@ -20,7 +20,7 @@ function UpdateMatch({ matchId }) {
   }, [matchId]);
 
   const handleUpdate = () => {
-    fetch(`http://localhost:5000/auth/sites/${matchId}`, {
+    fetch(`https://predictionsite-2.onrender.com/auth/sites/${matchId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ score, status })
