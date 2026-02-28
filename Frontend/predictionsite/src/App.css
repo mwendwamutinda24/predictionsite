@@ -287,34 +287,30 @@ table th {
   /* ✅ Responsive table */
   .tables table {
     display: block;
-    width: 95%;
+    width: 100%;
   }
 
   .tables thead {
-    display: none !important; /* ✅ force hide headers */
+    display: none !important; 
   }
 
   .tables tr {
-    display: flex;             /* ✅ row is flex container */
-    flex-wrap: wrap;           /* ✅ allow wrapping */
-    gap: 10px;
+    display: flex;            
+    flex-wrap: wrap;         
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
+   
     background: #f9f9f9;
   }
 
-  .tables td {
-    flex: 1 1 45%;             /* ✅ each cell ~half width */
-    min-width: 120px;
+  .tables td {          
     border: none;
-    padding: 8px;
     font-size: 14px;
     text-align: left;
     word-wrap: break-word;
     white-space: normal;
-    color: black; /* or white if dark mode */
+    color: black; 
   }
 
   .header {
