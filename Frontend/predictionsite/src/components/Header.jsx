@@ -1,12 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaFutbol } from "react-icons/fa"
+import { FaSun } from "react-icons/fa"   // brighten icon
 import { Link } from "react-router-dom";
 
 function Header() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleBackground = () => {
+    setDarkMode(!darkMode);
+    document.body.style.background = darkMode 
+      ? "black"   // normal background
+      : "lab(24.9401% 45.2703 -51.2728)"; // LAB background
+  };
+
   return (
     <div className="header">
       <div className="football">
-        <i><FaFutbol size={30} color="white" padding={10} /></i>
+        <i><FaFutbol size={30} color="white" style={{ padding: 10 }} /></i>
         <h1>Ziggy Tips</h1>
       </div>
 
@@ -14,7 +24,7 @@ function Header() {
         <p>Daily football predictions </p>
       </div>
 
-      <div className="logout">
+      <div className="logout" style={{ marginTop: "10px" }}>
         <Link
           to="/login"
           style={{
@@ -26,11 +36,12 @@ function Header() {
             border: "none",
             borderRadius: "6px",
             textAlign: "center",
-            lineHeight: "40px", // centers text vertically
+            lineHeight: "40px",
             textDecoration: "none",
             cursor: "pointer",
             display: "inline-block",
-            transition: "background-color 0.3s ease, transform 0.2s ease"
+            transition: "background-color 0.3s ease, transform 0.2s ease",
+            maxWidth: "100%" // ensures it can expand
           }}
           onMouseOver={(e) => {
             e.target.style.backgroundColor = "#d62828";
@@ -43,6 +54,15 @@ function Header() {
         >
           Logout
         </Link>
+      </div>
+
+      <div className="toggle-theme" style={{ marginTop: "15px" }}>
+        <FaSun 
+          size={25} 
+          color="yellow" 
+          style={{ cursor: "pointer" }} 
+          onClick={toggleBackground} 
+        />
       </div>
     </div>
   )
