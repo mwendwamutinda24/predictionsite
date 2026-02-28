@@ -21,7 +21,7 @@ function Homepage() {
       }
     }
 
-    fetch('https://predictionsite-2.onrender.com/auth/sites')
+    fetch('http://localhost:5000/auth/sites')
       .then(res => res.json())
       .then(data => {
         setMatches(data);
@@ -57,10 +57,20 @@ function Homepage() {
   });
 
   // ✅ Stats calculation based on DB status values
-  const total = filteredMatches.length;
-  const won = filteredMatches.filter(m => m.status && m.status.toLowerCase() === '✅ won').length;
-  const lost = filteredMatches.filter(m => m.status && m.status.toLowerCase() === 'lost').length;
-  const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
+  
+  // ✅ Stats calculation based on DB status values
+const total = filteredMatches.length;
+
+const won = filteredMatches.filter(m => 
+  m.status && m.status.toLowerCase().includes('won')
+).length;
+
+const lost = filteredMatches.filter(m => 
+  m.status && m.status.toLowerCase().includes('lost')
+).length;
+
+const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
+
 
   return (
     <div>
@@ -108,13 +118,14 @@ function Homepage() {
             <tbody>
               {filteredMatches.map(m => (
                 <tr key={m._id}>
-                  <td data-label="Time">{m.time}</td>
+                  <td data-label="Time" style={{fontSize:'15px'}}><p>{m.time}</p></td>
+                   <td data-label="League" style={{fontSize:'15px'}}><p>{m.league}</p></td>
                   <td data-label="Match"><h4>{m.home} vs {m.away}</h4></td>
-                  <td data-label="League"><p>{m.league}</p></td>
-                  <td data-label="Prediction" style={{color:'red',fontWeight:'bolder'}}>{m.prediction} </td>
-                  <td data-label="Odds" ><h3>{m.odds}</h3></td>
+                 
+                  <td data-label="Prediction" style={{color:'red',fontWeight:'bolder'}}><h4>{m.prediction}</h4> </td>
+                  <td data-label="Odds" ><h4>{m.odds}</h4></td>
                   <td data-label="Score"><h4>{m.score || '—'}</h4></td>
-                  <td data-label="Status" style={{color:'blue', fontWeight:'bold'}}>{m.status}</td>
+                  <td data-label="Status" style={{color:'blue', fontWeight:'bold'}}><h4>{m.status}</h4></td>
                   {isAdmin && (
                     <td data-label="Action">
                       <button 
