@@ -10,7 +10,7 @@ function Header() {
     setDarkMode(!darkMode);
     document.body.style.background = darkMode 
       ? "whitesmoke"  
-      : "rgb(24, 6, 41)"; 
+      : "rgb(11, 1, 20)"; 
   };
 
   return (
