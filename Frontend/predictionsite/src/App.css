@@ -231,6 +231,12 @@ table th {
 .status-lost {
   color: red;
 }
+.header2{
+    display:flex;
+  }
+  .header2 .toggle-theme{
+  margin-left:1000px;
+  }
 
 .status-pending {
   color: gray;
@@ -240,6 +246,12 @@ table th {
 @media(max-width:600px) {
   body {
     overflow-x: hidden;
+  }
+  .header2{
+    display:flex;
+  }
+  .header2 .toggle-theme{
+  margin-left:70px;
   }
 
   .logout a {
