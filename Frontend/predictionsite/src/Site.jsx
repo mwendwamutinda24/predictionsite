@@ -33,7 +33,7 @@ function Site() {
 
    const data=await  res.json()
     if (res.ok) {
-           toast.success('Prediction Successfully', { autoClose: 2000 });
+           toast.success('Prediction placed  Successfully', { autoClose: 2000 });
           
    
            setTimeout(() => {
