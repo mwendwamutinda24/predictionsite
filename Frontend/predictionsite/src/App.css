@@ -287,7 +287,8 @@ table th {
   .tables th,
   .tables td,
   .tables tr {
-    display: block;
+    display:flex;
+    flex-wrap:wrap;
     width: 95%;
   }
 
