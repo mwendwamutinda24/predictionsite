@@ -219,7 +219,7 @@ table{
   body{
     overflow-x:hidden;
   }
-   .logout{
+   .logout a{
      width:100%;
    }
 .tables table, .tables thead, .tables tbody, .tables th, .tables td, .tables tr { display: block; width: 95%; /* ✅ force full width */ } .tables thead { display: none; /* hide header on small screens */ } .tables tr { margin-bottom: 20px; border: 1px solid #ddd; border-radius: 8px; padding: 10px; background: #f9f9f9; display: flex; flex-direction: column; gap: 6px; } .tables td { border: none; padding: 8px 0; font-size: 14px; display: flex; justify-content: space-between; width: 100%; /* ✅ each cell takes full width */ word-wrap: break-word; /* ✅ wrap long team names */ white-space: normal; /* ✅ allow text to wrap */ } .tables td::before { content: attr(data-label); 
