@@ -12,6 +12,7 @@ function Header() {
     if (darkMode) {
       // back to light mode
       document.body.style.background = "whitesmoke";
+       document.body.style.color = "black"; 
     
     } else {
       // dark mode
