@@ -312,6 +312,7 @@ table th {
     padding: 8px 0;
     font-size: 14px;
     display: flex;
+    flex-wrap:wrap;
     justify-content: flex-start;
     width: 100%;
     word-wrap: break-word;
