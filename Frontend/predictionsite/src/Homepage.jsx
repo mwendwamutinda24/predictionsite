@@ -21,7 +21,7 @@ function Homepage() {
       }
     }
 
-    fetch('http://localhost:5000/auth/sites')
+    fetch('https://predictionsite-2.onrender.com/auth/sites')
       .then(res => res.json())
       .then(data => {
         setMatches(data);
