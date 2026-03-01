@@ -78,7 +78,7 @@ const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
 
       {/* Day navigation */}
       <div className="homes">
-        <div className="day2" style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+        <div className="day2" style={{ display: 'flex', alignItems: 'center', gap: '20px',color:'blueviolet' }}>
           <button onClick={goBack}>&lt;</button>
           <div>
             <h2>{dayName}</h2>
@@ -102,7 +102,7 @@ const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
             <h3>No predictions</h3>
           </div>
         ) : (
-          <table border="1" cellPadding="8" style={{ width: '80%', margin: '30px auto' }}>
+          <table border="1" cellPadding="5" style={{ width: '80%', margin: '10px auto' }}>
             <thead>
               <tr>
                 <th>Time</th>
