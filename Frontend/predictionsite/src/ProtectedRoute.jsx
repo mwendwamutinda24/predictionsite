@@ -5,19 +5,20 @@ import { jwtDecode } from "jwt-decode";
 const ProtectedRoute = ({ children, requiredRole }) => {
   const token = localStorage.getItem("token");
 
+  // No token at all → new user → go to register
   if (!token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/register" replace />;
   }
 
   try {
     const decoded = jwtDecode(token);
 
-    // Check expiry
+    // Token expired → existing user → go to login
     if (decoded.exp && decoded.exp * 1000 < Date.now()) {
       return <Navigate to="/login" replace />;
     }
 
-    // Check role if required
+    // Role check
     if (requiredRole && decoded.status?.toLowerCase() !== requiredRole.toLowerCase()) {
       return <Navigate to="/unauthorized" replace />;
     }
@@ -25,7 +26,8 @@ const ProtectedRoute = ({ children, requiredRole }) => {
     return children;
   } catch (err) {
     console.error("Invalid token:", err);
-    return <Navigate to="/login" replace />;
+    // If token is invalid, treat as new user → register
+    return <Navigate to="/register" replace />;
   }
 };
 
