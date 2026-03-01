@@ -1,139 +1,184 @@
-import React, { useEffect, useState } from 'react';
-import Header from './components/Header';
-import UpdateMatch from "./Update";
-import { jwtDecode } from "jwt-decode";
-import Site from "./Site";
+import 'react';
+import Header from './components/Header";            // form
 
 function Homepage() {
-  const [matches, setMatches] = useState([]);
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [selectedMatchId, setSelectedMatchId] = useState(null);
+  const [matchesState([]);
+  const, useState } from';
+import UpdateMatch from "./Update";   // ✅ use "./UpdateMatch" if your file is UpdateMatch.jsx
+import { jwtDecode } from "jwt-decode";
+import Site from "./Site ✅ Import Site upload, setMatches] = useCurrentDate] = use  const [isAdminState(false);
+  const [selectedMatchId, setSelectedMatch [currentDate, setState(new Date());
+, setIsAdmin] = useId] = useState(null);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token);
-        setIsAdmin(decoded.status === "admin");
-      } catch (err) {
-        console.error("Error decoding token:", err);
-      }
-    }
-
-    fetch('https://predictionsite-2.onrender.com/auth/sites')
-      .then(res => res.json())
-      .then(data => setMatches(data))
+  useEffect(() if (token) {
+     (token);
+        (err) {
+        console.error("('http://localhost:5000/auth/sites      .then(data => {
+        set })
       .catch(err => console.error('Error fetching matches:', err));
   }, []);
 
   // ✅ Delete handler
-  const handleDelete = async (id) => {
+  const handleDelete {
     try {
-      const res = await fetch(`https://predictionsite-2.onrender.com/auth/sites/${id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" }
+      fetch(`http://localhost => {
+    const token = localStorage.getItem("token");
+    try {
+        const decoded = jwtDecode setIsAdmin(decoded.status === "admin");
+      } catchError decoding token:", err);
+      }
+    }
+
+    fetch')
+      .then(res => res.json())
+Matches(data);
+      = async (id) => const res = await method: "DELETE",
+        headers: { "Content-Type:5000/auth/sites/${id}`, {
+       ": "application/json if (res.ok) {
+        setMatches(prev => prev.filter(m" }
       });
 
-      if (res.ok) {
-        // remove deleted match from state
-        setMatches(prev => prev.filter(m => m._id !== id));
+      => m._id !== id));
       } else {
-        console.error("Failed to delete match");
+        console delete match");
       }
     } catch (err) {
-      console.error("Error deleting match:", err);
-    }
+      console.error("Error deleting    }
   };
 
-  // ✅ Stats calculation
-  const filteredMatches = matches.filter(m => {
-    if (!m.predictionDate) return true;
-    const matchDate = new Date(m.predictionDate);
+  const weekday: 'long'Date = currentDate.toLocaleDateString.error("Failed to match:", err);
+ dayName = currentDate.toLocaleDateString('en-US', { });
+  const formatted('en-US', { 
+    weekday: 'long', day: 'numeric',  const goBack = () => {
+    const prev = new Date(currentDate);
+    prev.setDate(prev    setCurrentDate month: 'long', year: 'numeric' 
+  });
+
+.getDate() - 1);
+ goForward = () =>(prev);
+  };
+
+  constDate);
+    next.setDate(next.getDate {
+    const next = new Date(current() + 1);
+    set = matches.filter) return true;
     return (
-      matchDate.getFullYear() === currentDate.getFullYear() &&
-      matchDate.getMonth() === currentDate.getMonth() &&
-      matchDate.getDate() === currentDate.getDate()
+      matchCurrentDate(next);
+  };
+
+  const filteredMatches(m => {
+    if (!m.predictionDate const matchDate = new Date(m.predictionDate);
+   Date.getFullYear() === currentDate      matchDate.getDate.getMonth() &&
+      matchDate.getDate() === current Stats calculation.filter(m => 
+   .getFullYear() &&
+Month() === currentDate.getDate()
     );
   });
 
+  // ✅ based on DB status values
   const total = filteredMatches.length;
-  const won = filteredMatches.filter(m => m.status && m.status.toLowerCase().includes('won')).length;
-  const lost = filteredMatches.filter(m => m.status && m.status.toLowerCase().includes('lost')).length;
-  const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
 
-  return (
+  const won = filteredMatches.toLowerCase().includes('won')
+  ).length;
+
+  const lost = m.status && m.status m.status && m.status filteredMatches.filter(m => 
+   .toLowerCase().includes('lost')
+  ).length;
+
+  const winRate = total > 0 ? (().toFixed(1) + '%' (
     <div>
-      <Header />
+      */}
+      <div className="homes">won / total) * 100 : '0%';
 
-      {/* ... Day navigation + Stats section unchanged ... */}
+  return <Header />
 
-      <div className="tables">
-        {filteredMatches.length === 0 ? (
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
-            <h3>No predictions</h3>
+      {/* Day navigation
+          <button onClick={goBack}>
+        <div className="day2" style={{ display: 'flex', alignItems: 'center', gap: '20px',color:'blueviolet' }}>
+          <button onClick={goForward}>&lt;</button>
+          <div>
+            <h2>{dayName}</h2>
+            <p>{formattedDate}</p>
+          </div>&gt;</button>
+        </div>
+
+        */}
+        <div className="day">
+          <div className="total" ><h2 style={{color:'blue'}}>{total}</h2><p style={{color:'blueviolet',fontWeight:'bold'}}>Total</p></div>
+ {/* Stats section          <div className="won"><h2 style={{color:'green'}}> <div className="lost">{won}</h2><p>Won{lost}</h2><p style={{color:'brown'}}>{winRate}</h2><p style={{color:'green'}}>Win rate</p></div>
+        </div>
+      </div>
+
+      <div className="tables">Matches.length ===</p></div>
+         <h2 style={{color:'red'}}>Lost</p></div>
+          <div className="rate"><h2 style={{color:'blueViolet',fontWeight:'bold'}}>
+        {filtered 0 ? (
+          <div style={{ textAlign: 'center', marginTop: '20px' }}>No predictions</h3> <table border="1" cellPadding="5" style={{ width: '80%', margin: '10px auto' }}>
+            <h3>
           </div>
         ) : (
-          <table className="tables">
+         
             <thead>
               <tr>
                 <th>Time</th>
                 <th>Match</th>
                 <th>League</th>
-                <th>Prediction</th>
-                <th>Odds</th>
+                
                 <th>Score</th>
-                <th>Status</th>
-                {isAdmin && <th>Action</th>}
-              </tr>
+<th>Prediction</th> <th>Odds</th>
+                                               {isAdmin && <th>Action</th>}
+             <th>Status</th>
+.map(m => (
+                <tr key={m._id}> <td data-label="Time" style={{fontSize:'15px'}}><p>{m.time}</p></td> <td data-label="League" style={{fontSize:'15px'}}> </tr>
             </thead>
             <tbody>
-              {filteredMatches.map(m => (
-                <tr key={m._id}>
-                  <td data-label="Time">{m.time}</td>
-                  <td data-label="Match"><h4>{m.home} vs {m.away}</h4></td>
-                  <td data-label="League"><p>{m.league}</p></td>
-                  <td data-label="Prediction" style={{color:'red',fontWeight:'bolder'}}>{m.prediction}</td>
-                  <td data-label="Odds"><h4>{m.odds}</h4></td>
-                  <td data-label="Score"><h4>{m.score || '—'}</h4></td>
-                  <td data-label="Status" style={{color:'blue', fontWeight:'bold'}}>{m.status}</td>
+              {filteredMatches
+                 
+                 <p>{m.league}</p></td>
+                 <h4>{m.home} vs {m.away}</h4></td>
+                 <h4>{m.prediction}</h4></td>
+                  <td data-label="Match"> <td data-label="Prediction" style={{color:'red',fontWeight:'bolder'}}><h4>{m.odds}</h4></td>
+                 —'}</h4></td>
+                  <td data-label="Odds"> <td data-label="Score"><h4>{m.score || '<h4>{m.status}</h4></td>
                   {isAdmin && (
                     <td data-label="Action">
                       <button 
-                        onClick={() => setSelectedMatchId(m._id)} 
-                        style={{ padding: '5px 10px', marginRight:'5px', cursor: 'pointer', background:'green', color:'white', borderRadius:'0.5rem', border:'none' }}
-                      >
-                        Update
-                      </button>
+                        onClick={() => set style={{ padding:'green',color:':'none', marginRight:'5px' }}
+                      Update
                       <button 
-                        onClick={() => handleDelete(m._id)} 
-                        style={{ padding: '5px 10px', cursor: 'pointer', background:'red', color:'white', borderRadius:'0.5rem', border:'none' }}
-                      >
-                        Delete
-                      </button>
+                        onClick={() => handle                        style={{ padding: '5px 10px', cursor:'red',color:'white',borderRadius:'0.5rem',border:'none' }}
+                      Delete
+                      <td data-label="Status" style={{color:'blue', fontWeight:'bold'}}>SelectedMatchId(m._id)} 
+                       : '5px 10px', cursor: 'pointer',backgroundwhite',borderRadius:'0.5rem',border >
+                        </button>
+                     Delete(m._id)} 
+: 'pointer',background >
+                        ))}
+            </table>
+        )}
+      </div> update panel outside the table */}
+      {isAdmin && selectedMatchId && (
+        </button>
                     </td>
                   )}
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+              </tbody>
+         
 
-      {/* Update panel + Site upload unchanged */}
-      {isAdmin && selectedMatchId && (
-        <div className="update-panel">
-          <UpdateMatch matchId={selectedMatchId} />
-        </div>
-      )}
+      {/* ✅ Render <div style={{ width: '80%', margin: '20px auto', background: '#f9f9f9', padding: '20px', borderRadius: '8px', boxShadow: '0 2px 6px rgba(0,0,0,0.1)' }}>
+          <UpdateMatch matchId={selectedMatchId} />      )}
 
       {isAdmin && (
-        <div className="site-upload">
-          <Site />
-        </div>
-      )}
+        <div style={{ width: '80%', margin: '20px auto' }}>
+          <Site />      )}
     </div>
   );
 }
 
-export default Homepage;
+export default’s added
+- `handle at the top.  
+- A **Delete button
+        </div>
+
+        </div>
+ Homepage;
