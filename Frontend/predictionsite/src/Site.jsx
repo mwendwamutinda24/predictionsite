@@ -25,7 +25,7 @@ function Site() {
        const handleSubmit= async(e)=>{
         e.preventDefault();
         try{
-  const res = await fetch("https://predictionsite-2.onrender.com/auth/site", {
+  const res = await fetch("https://predictionsite-3.onrender.com/auth/site", {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(formData)
