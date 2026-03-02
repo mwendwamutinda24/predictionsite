@@ -17,6 +17,15 @@ router.post('/register', async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ message: "Email already registered" });
     }
+ router.delete('/sites/:id', async (req, res) => {
+  try {
+    const deleted = await Site.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Match not found" });
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
     // Hash password
     const salt = await bcrypt.genSalt(10);
