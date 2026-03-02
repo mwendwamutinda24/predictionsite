@@ -12,7 +12,7 @@ function Login() {
   });
 
   // ✅ Use environment variable for backend URL
-  const API_URL = process.env.REACT_APP_API_URL || "https://predictionsite-2.onrender.com";
+  const API_URL = process.env.REACT_APP_API_URL || "https://predictionsite-3.onrender.com";
 
   const handleChange = (e) => {
     setFormData({
