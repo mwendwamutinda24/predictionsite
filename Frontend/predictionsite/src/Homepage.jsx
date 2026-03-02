@@ -80,24 +80,31 @@ function Homepage() {
     m.status && m.status.toLowerCase().includes('lost')
   ).length;
   const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
-
-  // ✅ Delete function
-  const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this match?")) return;
-    try {
-      const res = await fetch(`https://predictionsite-3.onrender.com/auth/sites/${id}`, {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" }
-      });
-      if (res.ok) {
-        setMatches(prev => prev.filter(m => m._id !== id));
-      } else {
-        console.error("Failed to delete match");
+const handleDelete = async (id) => {
+  if (!window.confirm("Are you sure you want to delete this match?")) return;
+  try {
+    const res = await fetch(`https://predictionsite-3.onrender.com/auth/sites/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${localStorage.getItem("token")}` // 🔑 Add token
       }
-    } catch (err) {
-      console.error("Error deleting match:", err);
+    });
+
+    const data = await res.json().catch(() => null);
+    console.log("Delete response:", res.status, data);
+
+    if (res.ok) {
+      setMatches(prev => prev.filter(m => m._id !== id));
+    } else {
+      setError(data?.message || "Failed to delete match");
     }
-  };
+  } catch (err) {
+    console.error("Error deleting match:", err);
+    setError("Error deleting match");
+  }
+};
+
 
   return (
     <div>
