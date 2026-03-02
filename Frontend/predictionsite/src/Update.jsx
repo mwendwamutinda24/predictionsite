@@ -8,7 +8,7 @@ function UpdateMatch({ matchId }) {
   useEffect(() => {
     console.log("Fetching match with ID:", matchId);
     if (!matchId) return;
-    fetch(`https://predictionsite-2.onrender.com/auth/sites/${matchId}`)
+    fetch(`https://predictionsite-3.onrender.com/auth/sites/${matchId}`)
       .then(res => res.json())
       .then(data => {
         console.log("Fetched match:", data);
@@ -20,7 +20,7 @@ function UpdateMatch({ matchId }) {
   }, [matchId]);
 
   const handleUpdate = () => {
-    fetch(`https://predictionsite-2.onrender.com/auth/sites/${matchId}`, {
+    fetch(`https://predictionsite-3.onrender.com/auth/sites/${matchId}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ score, status })
