@@ -81,6 +81,24 @@ function Homepage() {
   ).length;
   const winRate = total > 0 ? ((won / total) * 100).toFixed(1) + '%' : '0%';
 
+  // ✅ Delete function
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this match?")) return;
+    try {
+      const res = await fetch(`https://predictionsite-3.onrender.com/auth/sites/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" }
+      });
+      if (res.ok) {
+        setMatches(prev => prev.filter(m => m._id !== id));
+      } else {
+        console.error("Failed to delete match");
+      }
+    } catch (err) {
+      console.error("Error deleting match:", err);
+    }
+  };
+
   return (
     <div>
       <Header />
@@ -139,12 +157,18 @@ function Homepage() {
                   <td data-label="Score"><h4>{m.score || '—'}</h4></td>
                   <td data-label="Status" style={{color:'blue', fontWeight:'bold'}}><h4>{m.status}</h4></td>
                   {isAdmin && (
-                    <td data-label="Action">
+                    <td data-label="Action" style={{ display: 'flex', gap: '10px' }}>
                       <button 
                         onClick={() => setSelectedMatchId(m._id)} 
                         style={{ padding: '5px 10px', cursor: 'pointer', background:'green', color:'white', borderRadius:'0.5rem', border:'none' }}
                       >
                         Update
+                      </button>
+                      <button 
+                        onClick={() => handleDelete(m._id)} 
+                        style={{ padding: '5px 10px', cursor: 'pointer', background:'red', color:'white', borderRadius:'0.5rem', border:'none' }}
+                      >
+                        Delete
                       </button>
                     </td>
                   )}
