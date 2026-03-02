@@ -22,7 +22,7 @@ function Homepage() {
       }
     }
 
-    fetch('https://predictionsite-2.onrender.com/auth/sites')
+    fetch('https://predictionsite-3.onrender.com/auth/sites')
       .then(res => {
         if (!res.ok) {
           throw new Error(`Server error: ${res.status}`);
