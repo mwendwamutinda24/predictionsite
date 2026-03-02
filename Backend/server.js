@@ -43,6 +43,16 @@ async function startServer() {
     } else {
       console.log("ℹ️ Admin already exists");
     }
+    // Example 1
+app.delete("/sites/:id", async (req, res) => {
+  try {
+    await Site.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
