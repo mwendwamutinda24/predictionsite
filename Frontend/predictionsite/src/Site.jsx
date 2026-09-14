@@ -1,108 +1,142 @@
 import React from 'react'
 import { useState } from 'react';
-import { toast } from 'react-toastify'; 
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import './Site.css';
 
 function Site() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [submitting, setSubmitting] = useState(false);
 
-     const [ formData, setFormData]=useState({
-         time:'',
-         home:'',
-         away:'',
-         league:'',
-         prediction:'',
-         odds:'',
+  const [formData, setFormData] = useState({
+    time: '',
+    home: '',
+    away: '',
+    league: '',
+    prediction: '',
+    odds: '',
+  })
 
-     })
-      const handleChange= e=>{
-        setFormData({
-            ...formData,
-            [e.target.name]:e.target.value
-        })
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    try {
+      const res = await fetch("https://predictionsite-3.onrender.com/auth/site", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        toast.success('Prediction posted', { autoClose: 2000 });
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        toast.error(data.message || "Couldn't post the prediction");
       }
-       const handleSubmit= async(e)=>{
-        e.preventDefault();
-        try{
-  const res = await fetch("https://predictionsite-3.onrender.com/auth/site", {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(formData)
-});
+    } catch (error) {
+      console.error("Frontend error:", error);
+      toast.error('Server error — try again in a moment');
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
-   const data=await  res.json()
-    if (res.ok) {
-           toast.success('Prediction placed  Successfully', { autoClose: 2000 });
-          
-   
-           setTimeout(() => {
-             navigate("/");
-           }, 2000);
-         } else {
-           toast.error(data.message || "error posting Prediction");
-         }
-        } catch(error){
-                     console.error(error);
-                     console.error("Frontend error:", error);
-                    toast.error('Server error',error);
-        }
-
-       }
-
-       
   return (
-    <div className="register">
-        <div className="form">
-            
-            <form onSubmit={handleSubmit}>
-                <h2>Post your prediction</h2>
-                  <div className="details">
-                    <label>Start Time</label>
-                    <input type="text" name="time" placeholder="Enter start time"
-                     onChange={handleChange} required/>
-                </div>
-                <div className="forms-unit">
-                     <div className="details1">
-                    <label>Home Team</label>
-                    <input type="text" name="home" placeholder="Enter home Team" 
-                     onChange={handleChange}required/>
-                 </div>
-                 <p>Vs</p>
-                 <div className="details1">
-                    <label>Away Team</label>
-                    <input type="text" name="away" placeholder="Enter away Team"
-                     onChange={handleChange} required/>
-                </div>
+    <div className="post-form">
+      <h3 className="post-form-title">Post a prediction</h3>
 
-                </div>
-                  <div className="details">
-                    <label>League</label>
-                    <input type="text" name="league" placeholder="Enter League"
-                     onChange={handleChange} required/>
-                </div>
-                
-                <div className="details">
-                    <label>Prediction</label>
-                    <input type="text" name="prediction" placeholder="Create your prediction"
-                     onChange={handleChange} required/>
-                </div>
-                
-                 <div className="details">
-                    <label>Odds</label>
-                    <input type="text" name="odds" placeholder="Enter Outcome Odds" 
-                     onChange={handleChange} required/>
-                </div>
-              
-                <div className="details">
-                    <button className="register">Post Prediction</button>
-                </div>
-                
-            </form>
+      <form onSubmit={handleSubmit}>
+        <div className="field">
+          <label htmlFor="time">Start time</label>
+          <input
+            id="time"
+            type="text"
+            name="time"
+            placeholder="e.g. 20:45"
+            onChange={handleChange}
+            required
+          />
         </div>
-    </div>
 
-   
+        <div className="field-row">
+          <div className="field">
+            <label htmlFor="home">Home team</label>
+            <input
+              id="home"
+              type="text"
+              name="home"
+              placeholder="Home team"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <span className="vs-divider">vs</span>
+          <div className="field">
+            <label htmlFor="away">Away team</label>
+            <input
+              id="away"
+              type="text"
+              name="away"
+              placeholder="Away team"
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <div className="field">
+          <label htmlFor="league">League</label>
+          <input
+            id="league"
+            type="text"
+            name="league"
+            placeholder="e.g. Premier League"
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div className="field-row">
+          <div className="field">
+            <label htmlFor="prediction">Prediction</label>
+            <input
+              id="prediction"
+              type="text"
+              name="prediction"
+              placeholder="e.g. Over 2.5 goals"
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="field field-narrow">
+            <label htmlFor="odds">Odds</label>
+            <input
+              id="odds"
+              type="text"
+              name="odds"
+              placeholder="1.85"
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+
+        <button className="post-submit" type="submit" disabled={submitting}>
+          {submitting ? 'Posting…' : 'Post prediction'}
+        </button>
+      </form>
+    </div>
   )
 }
 
