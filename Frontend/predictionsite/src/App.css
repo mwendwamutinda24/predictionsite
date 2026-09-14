@@ -705,18 +705,18 @@ body {
   }
 
   .form form input {
-    width: 100%;
+    width: 90%;
     height: 40px;
     margin-left: 0;
   }
 
   .details input,
   .details1 input {
-    width: 100%;
+    width: 90%;
   }
 
   .details .register {
-    width: 100%;
+    width: 90%;
     margin-left: 0;
   }
 
@@ -769,7 +769,7 @@ body {
 
 .auth-card {
   width: 100%;
-  max-width: 460px;
+  max-width: 500px;
   background: #ffffff;
   border-radius: 20px;
   padding: 36px 32px;
