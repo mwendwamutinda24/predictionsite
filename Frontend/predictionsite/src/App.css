@@ -101,7 +101,7 @@ body {
 }
 
 .details input {
-  width: 460px;
+  width: 420px;
   border-radius: 10px;
   height: 45px;
   border: 1.5px solid #d1d5db;
@@ -157,7 +157,7 @@ body {
 }
 
 .details .register {
-  width: 460px;
+  width: 420px;
   height: 46px;
   background: linear-gradient(135deg, #216e39, #2e8b57);
   border-radius: 10px;
