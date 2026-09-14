@@ -849,6 +849,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
+   width:90%;
 }
 
 .input-group label {
@@ -877,7 +878,7 @@ body {
 }
 
 .input-wrap input {
-  width: 100%;
+  width: 90%;
   height: 50px;
   padding: 0 16px 0 44px;
   border: 1.5px solid #e5e7eb;
